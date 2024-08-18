@@ -1,10 +1,9 @@
 class Solution:
     def addDigits(self, num: int) -> int:
-        sum = 0
+        total_sum = 0
         for i in str(num):
-            sum += int(i)
-        if sum < 10:
-            return sum
+            total_sum += int(i)
+        if total_sum < 10:
+            return total_sum
         else:
-            return self.addDigits(sum)
-        
+            return self.addDigits(total_sum)
