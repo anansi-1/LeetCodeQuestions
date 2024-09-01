@@ -1,11 +1,14 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        if len(ransomNote) > len(magazine):
+            return False
+        
         magazine_count = Counter(magazine)
+    
         ransom_note_count = Counter(ransomNote)
 
-        for letter in ransom_note_count:
-            if ransom_note_count[letter] > magazine_count.get(letter,0):
+        for letter, count in ransom_note_count.items():
+            if magazine_count[letter] < count:
                 return False
-        return True
-    
         
+        return True
