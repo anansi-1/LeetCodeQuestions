@@ -2,9 +2,7 @@ class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
 
 
-        count_letters = defaultdict(int)
-        for i in text:
-            count_letters[i] += 1
+        count_letters = Counter(text)
 
         
         flag = True
