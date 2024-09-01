@@ -1,5 +1,8 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
+        if len(text) < len("balloon"):
+            return 0
+
         count_letters = {}
 
         for i in text:
