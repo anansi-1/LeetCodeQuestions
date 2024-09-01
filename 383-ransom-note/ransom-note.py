@@ -1,16 +1,13 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        counter = {}
-        for c in magazine:
-            if c in counter:
-                counter[c] += 1
+        letters = Counter(magazine)
+        for i in ransomNote:
+            if i in letters:
+                letters[i] -= 1
+                if letters.get(i) == 0:
+                    del letters[i]
             else:
-                counter[c] = 1
-        for c in ransomNote:
-            if c not in counter:
                 return False
-            elif counter[c] == 1:
-                del counter[c]
-            else:
-                counter[c] -= 1
         return True
+    
+        
