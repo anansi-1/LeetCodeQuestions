@@ -1,12 +1,10 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        letters = Counter(magazine)
-        for i in ransomNote:
-            if i in letters:
-                letters[i] -= 1
-                if letters.get(i) == 0:
-                    del letters[i]
-            else:
+        magazine_count = Counter(magazine)
+        ransom_note_count = Counter(ransomNote)
+
+        for letter in ransom_note_count:
+            if ransom_note_count[letter] > magazine_count.get(letter,0):
                 return False
         return True
     
