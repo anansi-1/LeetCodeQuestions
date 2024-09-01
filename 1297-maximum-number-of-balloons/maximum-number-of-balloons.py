@@ -1,22 +1,13 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
+            counter = defaultdict(int)
+            balloon = 'balloon'
 
-
-        count_letters = Counter(text)
-
-        
-        flag = True
-        count = 0
-
-        while flag:
-            for i in "balloon":
-                if i in count_letters:
-                    count_letters[i] -= 1
-                    if count_letters[i] == 0:
-                        del count_letters[i]
-                else:
-                    flag = False
-                    break
-            if flag:
-                count += 1
-        return count
+            for c in text:
+                if c in balloon:
+                    counter[c] += 1
+            
+            if any(c not in counter for c in balloon):
+                return 0
+            else:
+                return min(counter['b'],counter['a'],counter['l']//2, counter['o']//2, counter['n'])
