@@ -6,6 +6,6 @@ class Solution:
                 return False
         last_word = s[-1]
         first_word = s[0]
-        if last_word[-1] != first_word[0]:
+        if s[-1][-1] != s[0][0]:
             return False
         return True
