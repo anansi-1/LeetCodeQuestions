@@ -1,9 +1,9 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        count = defaultdict(int)
-        for i in nums:
-            count[i] += 1
-        for i in count.values():
-            if i > 1:
+        nums.sort()  # 1,1,2,3
+        for i in range(len(nums)-1): # 0 1 2 3
+            if nums[i] != nums[i+1]:
+                continue
+            else:
                 return True
-        return False
+
