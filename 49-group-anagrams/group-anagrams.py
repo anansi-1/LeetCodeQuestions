@@ -1,16 +1,29 @@
-from collections import defaultdict
-from typing import List
-
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        anagram_map = defaultdict(list)
-        result = []
 
-        for s in strs:
-            sorted_s = tuple(sorted(s))
-            anagram_map[sorted_s].append(s)
+        map = {}
         
-        for value in anagram_map.values():
-            result.append(value)
+        for str in strs:
+            key = [0] * 26
+
+            for c in str:
+                key[ord(c) - ord('a')] += 1
+
+            keytuple = tuple(key)
+
+            if keytuple in map:
+                map[keytuple].append(str)
+            
+            else:
+                map[keytuple] = [str]
+
         
-        return result
+        return map.values()
+
+        
+
+
+
+
+
+        
