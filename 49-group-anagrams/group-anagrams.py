@@ -1,13 +1,9 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        dict = {}
+        dict = defaultdict(list)
         for word in strs:
-            count = [0]*26
-            for letter in word:
-                count[97 - ord(letter)] += 1
-            if tuple(count) in dict:
-                dict[tuple(count)].append(word) 
-            else:
-                dict[tuple(count)] = [word]
+            sorted_word_list = sorted(word) #['a','e','t']
+            sorted_word = "".join(sorted_word_list)
+            dict[sorted_word].append(word)
         return dict.values()
