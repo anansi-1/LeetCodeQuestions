@@ -4,6 +4,6 @@ class Solution:
         dict = defaultdict(list)
         for word in strs:
             sorted_word_list = sorted(word) #['a','e','t']
-            sorted_word = "".join(sorted_word_list)
-            dict[sorted_word].append(word)
+
+            dict[tuple(sorted_word_list)].append(word)
         return dict.values()
