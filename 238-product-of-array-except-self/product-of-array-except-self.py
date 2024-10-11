@@ -1,18 +1,27 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        answer = [1] * n
+        pre = []
+        post = deque([])
+        product = 1
+        for i in nums:
+            product *= i
+            pre.append(product)
 
-        # Create prefix products
-        prefix_product = 1
-        for i in range(n):
-            answer[i] = prefix_product
-            prefix_product *= nums[i]
+        product = 1
+        for i in reversed(nums):
+            product *= i
+            post.appendleft(product)
 
-        # Multiply by suffix products
-        suffix_product = 1
-        for i in range(n - 1, -1, -1):
-            answer[i] *= suffix_product
-            suffix_product *= nums[i]
+        result = []
+        for i in range(len(nums)):
+            if i == 0:
+                result.append(post[i + 1])
+            elif i == len(nums) - 1:
+                result.append(pre[i - 1])
+            else:
+                result.append(pre[i - 1] * post[i + 1])  
 
-        return answer
+        return result
+
+
+        
