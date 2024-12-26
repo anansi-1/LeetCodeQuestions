@@ -1,27 +1,15 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        pre = []
-        post = deque([])
-        product = 1
-        for i in nums:
-            product *= i
-            pre.append(product)
-
-        product = 1
-        for i in reversed(nums):
-            product *= i
-            post.appendleft(product)
-
-        result = []
-        for i in range(len(nums)):
-            if i == 0:
-                result.append(post[i + 1])
-            elif i == len(nums) - 1:
-                result.append(pre[i - 1])
-            else:
-                result.append(pre[i - 1] * post[i + 1])  
-
-        return result
-
-
-        
+        # nums = [-1,2,3,4]
+        # left = [1,1,2,6]
+        # right= [24,12,4,1]
+        n = len(nums)
+        left , right = [1]*n, [1]*n
+        for i in range(1,n):
+            left[i] = nums[i-1] * left[i-1]            
+        for i in range(n-2,-1,-1):
+            right[i] = nums[i+1] * right[i+1] 
+        answer = [1] * n           
+        for i in range(0,n):
+            answer[i] = left[i] * right[i]
+        return answer
