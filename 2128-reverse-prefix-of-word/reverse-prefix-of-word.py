@@ -1,14 +1,18 @@
 class Solution:
     def reversePrefix(self, word: str, ch: str) -> str:
-        l = 0 
-        r = 0
-        while (r < len(word ))and word[r] != ch:
-            r += 1
-        word = list(word)
-        if ch in word:
-            while l < r:
-                word[l],word[r] = word[r],word[l]
-                l += 1
-                r -= 1
+        if ch not in word:
+            return word
+        stack = []
+        letters = list(word)   #[a , b, c , d, e,f , d]
+        for i in range(len(word)): #7
+            if word[i] == ch:
+                stack.append(word[i])
+                break
+            stack.append(word[i]) # [a,b,c,d] 
 
-        return "".join(word)
+        i = 0
+        while len(stack) > 0:
+            letters[i] = stack.pop()
+            i += 1
+        word = "".join(letters)
+        return word
