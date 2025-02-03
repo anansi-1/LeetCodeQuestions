@@ -1,13 +1,16 @@
 class Solution:
     def printVertically(self, s: str) -> List[str]:
-        words = s.split()
-        max_length = max(len(word) for word in words)
-        vertical_print = []
-      
-        for i in range(max_length):
-            column_chars = [(word[i] if i < len(word) else ' ') for word in words]
-            while column_chars and column_chars[-1] == ' ':
-                column_chars.pop()
-            vertical_print.append(''.join(column_chars))
-      
-        return vertical_print
+        s = s.split()
+        ans = []
+        max_len = 0
+        for i in s:
+            max_len = (max(max_len,len(i)))
+        for i in range(max_len):
+            word = []
+            for j in range(len(s)):
+                if i >= len(s[j]):
+                    word.append(" ")
+                else:
+                    word.append(s[j][i])
+            ans.append(("".join(word)).rstrip())
+        return ans
