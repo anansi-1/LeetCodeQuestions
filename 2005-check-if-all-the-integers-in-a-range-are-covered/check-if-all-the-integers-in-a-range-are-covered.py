@@ -1,18 +1,10 @@
 class Solution:
     def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
-        combined_range= []
-        for i in ranges:
-            for i in range(i[0],i[-1]+1):
-                combined_range.append(i)
-        
-
+        nums = set()
+        for arr in ranges:
+            for i in range(arr[-1],arr[0]-1,-1):
+                nums.add(i)
         for i in range(left,right+1):
-            if i in combined_range:
-                continue
-            else:
+            if i not in nums:
                 return False
         return True
-
-
-        return False
-        print(cobined_range)
