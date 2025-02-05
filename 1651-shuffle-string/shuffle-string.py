@@ -1,11 +1,11 @@
 class Solution:
     def restoreString(self, s: str, indices: List[int]) -> str:
-        rel = {}
-        j = 0
-        for i in indices:
-            rel[i] = s[j]
-            j += 1
-        ordered = []
-        for i in range(len(s)):
-            ordered.append(rel.get(i))
-        return "".join(ordered)
+        order = {}
+        ans = []
+        for letter,index in zip(s,indices):
+            order[index] = letter
+        for i in range(len((s))):
+            ans.append(order[i])
+        return "".join(ans)
+        
+
