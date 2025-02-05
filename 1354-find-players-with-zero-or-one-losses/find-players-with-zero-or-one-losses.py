@@ -5,7 +5,6 @@ class Solution:
 
         for i in range(len(matches)):
             winner[matches[i][0]] = winner.get(matches[i][0], 0) + 1
-        for i in range(len(matches)):
             loser[matches[i][1]] = loser.get(matches[i][1], 0) + 1
 
         zero_losses = []
