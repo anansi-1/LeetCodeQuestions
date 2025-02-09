@@ -2,11 +2,6 @@ class Solution:
     def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
-        ans = [[0]*cols for _ in range(rows)]
-        #  0  1  2  3 
-        # [8, 7, 9, 3]--row
-        # [9, 4, 8, 7]--col
-
         row_max = []
         for row in grid:
             row_max.append(max(row))
