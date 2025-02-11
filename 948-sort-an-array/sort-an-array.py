@@ -1,15 +1,13 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        n = max(nums) 
-        m = min(nums) 
-        multi = (n - m) + 1
-        count = [0] * multi
-        res = []
-        count = [0]*multi
+        m = max(nums) 
+        n = -min(nums)
+        multi = m + n + 1
+        freq_arr = [0] * multi
+        ans = []
         for num in nums:
-            count[num- m] += 1
-        for i in range(len(count)):
-            for j in range(count[i]):
-                ans = i + m
-                res.append(ans)
-        return res
+            freq_arr[num+n] += 1
+        for i in range(len(freq_arr)):
+            for j in range((freq_arr[i])):
+                ans.append(i-n)
+        return ans
