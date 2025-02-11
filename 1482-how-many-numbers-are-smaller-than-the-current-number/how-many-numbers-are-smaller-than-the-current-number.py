@@ -1,12 +1,11 @@
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
-        sortedNums = sorted(nums)
-        dic = {}
-        result = []
-        
-        for i in range(len(sortedNums)):
-            if sortedNums[i] not in dic:
-                dic[sortedNums[i]]=i
-        for i in nums:
-            result.append(dic[i])
-        return result
+        num_sorted = sorted(nums)
+        num_dict = {}
+        for i in range(len(num_sorted)):
+            number = num_sorted[i]
+            if number not in num_dict:
+                num_dict[number] = i
+        for i in range(len(nums)):
+            nums[i] = num_dict[nums[i]]
+        return nums
