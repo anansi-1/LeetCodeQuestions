@@ -1,19 +1,15 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
         skill.sort()
-        n = len(skill)
-        ans = 0
-        i,j = 0, n-1
-        target = skill[i] + skill[j]
-        while i < j:
-            if skill[i] + skill[j] == target:
-                ans += skill[i]*skill[j]
-                i += 1
-                j -= 1
-            else:
-                return - 1
-        return ans
-        
-        
-
-            
+        left = 0
+        right = len(skill) - 1# 5
+        target = skill[left] + skill[right]
+        chemistry = 0
+        print(target)
+        while left < right:
+            if skill[left] + skill[right] != target:
+                return -1
+            chemistry += skill[left] * skill[right]
+            left += 1
+            right -= 1
+        return chemistry
