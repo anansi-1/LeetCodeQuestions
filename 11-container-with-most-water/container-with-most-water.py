@@ -1,16 +1,15 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        x = len(height) - 1
         l = 0
         r = len(height) - 1
-        max_amount = 0
-
+        max_stored = float('-inf')
         while l < r:
-            current = x * (min(height[l], height[r]))
-            max_amount = max(current, max_amount)
+            cur_width = r - l
+            cur_height = min(height[l],height[r])
+            cur_stored = cur_height * cur_width
+            max_stored = max(max_stored,cur_stored)
             if height[l] < height[r]:
                 l += 1
             else:
                 r -= 1
-            x -= 1
-        return max_amount
+        return max_stored
