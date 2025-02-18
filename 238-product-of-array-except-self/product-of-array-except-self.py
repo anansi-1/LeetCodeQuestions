@@ -1,15 +1,18 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        # nums = [-1,2,3,4]
-        # left = [1,1,2,6]
-        # right= [24,12,4,1]
         n = len(nums)
-        left , right = [1]*n, [1]*n
+        l,r,ans = [1]*n,[1]*n,[1]*n
+        l[0] = nums[0]
+        r[-1] = nums[-1]
+
         for i in range(1,n):
-            left[i] = nums[i-1] * left[i-1]            
-        for i in range(n-2,-1,-1):
-            right[i] = nums[i+1] * right[i+1] 
-        answer = [1] * n           
-        for i in range(0,n):
-            answer[i] = left[i] * right[i]
-        return answer
+            l[i] = l[i-1]*nums[i]
+        for j in range(n-2,-1,-1):
+            r[j] = r[j+1]*nums[j]
+        
+        ans[0] = r[1]
+        ans[-1] = l[-2]
+        for i in range(1,n-1):
+            ans[i] = l[i-1]*r[i+1]
+        return ans
+        
