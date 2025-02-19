@@ -5,11 +5,11 @@
 #         self.next = next
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slow_pointer = head
-        fast_pointer = head
+        s = head 
+        f = head
+        while  f and f.next != None:  
+            s = s.next
+            f = f.next.next
+        return s
 
-        while fast_pointer is not None and fast_pointer.next is not None:
-            slow_pointer = slow_pointer.next
-            fast_pointer = fast_pointer.next.next
-
-        return slow_pointer
+        
