@@ -9,8 +9,6 @@ class MyLinkedList:
     def __init__(self):
         self.head=None
         self.length=0
-        
-
     def get(self, index: int) -> int:
         if index>=self.length:
             return -1
@@ -19,8 +17,6 @@ class MyLinkedList:
             curr=curr.next
             index-=1
         return curr.val
-        
-
     def addAtHead(self, val: int) -> None:
         newnode=Node(val)
         if self.head==None:
@@ -29,8 +25,6 @@ class MyLinkedList:
             newnode.next=self.head
             self.head=newnode
         self.length+=1
-        
-
     def addAtTail(self, val: int) -> None:
         newnode=Node(val)
         if self.head==None:
@@ -41,8 +35,6 @@ class MyLinkedList:
                 curr=curr.next
             curr.next=newnode
         self.length+=1
-
-
     def addAtIndex(self, index: int, val: int) -> None:
         if index < 0 or index > self.length:
             return
@@ -58,8 +50,6 @@ class MyLinkedList:
             new_node.next = curr.next
             curr.next = new_node
             self.length += 1
-
-
     def deleteAtIndex(self, index: int) -> None:
         if index < 0 or index >= self.length:
             return
@@ -78,7 +68,6 @@ class MyLinkedList:
                 i -= 1
             curr.next = curr.next.next
         self.length -= 1
-
 # Your MyLinkedList object will be instantiated and called as such:
 # obj = MyLinkedList()
 # param_1 = obj.get(index)
