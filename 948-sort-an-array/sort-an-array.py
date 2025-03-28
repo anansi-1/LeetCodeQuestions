@@ -1,13 +1,23 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        m = max(nums) 
-        n = -min(nums)
-        multi = m + n + 1
-        freq_arr = [0] * multi
-        ans = []
-        for num in nums:
-            freq_arr[num+n] += 1
-        for i in range(len(freq_arr)):
-            for j in range((freq_arr[i])):
-                ans.append(i-n)
-        return ans
+        if len(nums) == 1:
+            return nums
+        mid = len(nums)//2
+        left = self.sortArray(nums[:mid])
+        right = self.sortArray(nums[mid:])
+        l,r = 0,0
+        curr_arr = []
+        while l < len(left) and r < len(right):
+            if left[l] <= right[r]:
+                curr_arr.append(left[l])
+                l += 1
+            else:
+                curr_arr.append(right[r])
+                r += 1
+        while l < len(left):
+            curr_arr.append(left[l])
+            l += 1
+        while r < len(right):
+            curr_arr.append(right[r])
+            r += 1
+        return curr_arr
