@@ -12,6 +12,8 @@ class Solution:
                 r = mid - 1
             elif nums[mid] < target:
                 l = mid + 1
+        if starting == -1:
+            return [-1,-1]
         ending = -1
         l,r = 0,len(nums)-1
         while l <= r:
