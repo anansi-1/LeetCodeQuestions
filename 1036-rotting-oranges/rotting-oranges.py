@@ -1,31 +1,37 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-            rotten = 2
-            f = 1
-            m = len(grid)
-            n = len(grid[0])
-            num_fresh = 0
-            q = deque()
-            for i in range(m):
-                for j in range(n):
-                    if grid[i][j] == rotten:
-                        q.append((i, j))
-                    elif grid[i][j] == f:
-                        num_fresh += 1
-            if num_fresh == 0:
-                return 0
-            minutes = -1
-            while q:
-                q_size = len(q)
-                minutes += 1
-                for _ in range(q_size):
-                    i, j = q.popleft()
-                    for r, c in [(i, j + 1), (i + 1, j), (i, j - 1), (i - 1, j)]:
-                        if 0 <= r < m and 0 <= c < n and grid[r][c] == f:
-                            grid[r][c] = rotten
-                            num_fresh -= 1
-                            q.append((r, c))
-            if num_fresh == 0:
-                return minutes
-            else:
-                return -1
+        fresh,rotten = 1,2
+        row,col = len(grid),len(grid[0])
+        num_fresh = 0
+        queue = deque()
+
+        for r in range(row):
+            for c in range(col):
+                if grid[r][c] == fresh:
+                    num_fresh += 1
+                elif grid[r][c] == rotten:
+                    queue.append((r,c))
+        if num_fresh == 0:
+            return 0
+
+        def inbound(x,y):
+            if 0 <= x <= (len(grid)-1) and 0 <= y <= (len(grid[0])-1):
+                return True
+            return False
+
+        min = -1
+        while queue:
+            l = len(queue)
+            min += 1
+            for i in range(l):
+                i,j = queue.popleft()
+                for x,y in [(i,j+1),(i,j-1),(i+1,j),(i-1,j)]:
+                    if inbound (x,y) and grid[x][y] == fresh:
+                        num_fresh -= 1
+                        grid[x][y] = 2
+                        queue.append((x,y))
+                        
+        if num_fresh == 0:
+            return min
+        else: 
+            return -1
