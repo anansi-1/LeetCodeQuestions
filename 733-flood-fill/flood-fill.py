@@ -1,25 +1,19 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        row = len(image)
-        col = len(image[0])
-        if image[sr][sc] == color:
+            def dfs(r,c,orginal):
+                image[r][c] = color
+                for i,j in [(r+1,c),(r-1,c),(r,c+1),(r,c-1)]:
+                    if (0 <= i < len(image) and 0 <= j < len(image[0])) and image[i][j] == orginal:
+                        dfs(i,j,orginal)
+            
+            if image[sr][sc] == color:
+                return image
+
+            orginal = image[sr][sc]
+            image[sr][sc] = color
+            
+            for r,c in [(sr+1,sc),(sr-1,sc),(sr,sc+1),(sr,sc-1)]:
+                if (0 <= r < len(image) and 0 <= c < len(image[0])) and image[r][c] == orginal:
+                    print(orginal)
+                    dfs(r,c,orginal)
             return image
-        q = deque()
-        start_color = image[sr][sc]
-        seen = set()
-        q.append((sr, sc))
-        seen.add((sr, sc))
-        image[sr][sc] = color
-        directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-        def inBounds(r, c):
-            return 0 <= r < row and 0 <= c < col
-        while q:
-            cur_r, cur_c = q.popleft()
-            for dr, dc in directions:
-                new_r = cur_r + dr
-                new_c = cur_c + dc
-                if inBounds(new_r, new_c) and image[new_r][new_c] == start_color and (new_r, new_c) not in seen:
-                    image[new_r][new_c] = color
-                    seen.add((new_r, new_c))
-                    q.append((new_r, new_c))
-        return image
